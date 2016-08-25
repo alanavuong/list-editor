@@ -165,12 +165,13 @@ void subMenuDisplay()
 		"8.Exit\n";
 }
 
-//user can modify the file through the following options, change this return type
+//user can modify the file through the following options
 bool subMenu(std::string *number, std::fstream &file, std::string name, std::string *fileNamePointer)
 {
 	bool fileNotChange = true;//decide whether to transition to main menu
 	bool noChangeOnOption = true;//confirm user choice on sub menu
 
+	//this confirms whether the user want to choose that number for the sub menu
 	while (noChangeOnOption)
 	{
 		subMenuDisplay();
@@ -180,49 +181,58 @@ bool subMenu(std::string *number, std::fstream &file, std::string name, std::str
 		noChangeOnOption = userAcceptChoice();
 	}
 
+	//returns to the main menu
 	if (*number == "1")
 	{
 		fileNotChange = false;
 	}
+	//returns to the main menu
 	else if (*number == "2")
 	{
 		fileNotChange = false;
 	}
+	//displays the text file in a list format
 	else if (*number == "3")
 	{
 		readFile(file);
 	}
+	//adds a new text to the next line of the text file
 	else if (*number == "4")
 	{
 		addText(file);
 	}
+	//deletes a targeted text and updates that information
 	else if (*number == "5")
 	{
 		readFile(file);
 		removeText(file, name);
 		readFile(file);
 	}
+	//renames the file
 	else if (*number == "6")
 	{
 		renameFile(name, file, fileNamePointer);
 	}
+	//return to back to main menu after deleting the file
 	else if (*number == "7")
 	{
 		deleteFile(name, file);
 		fileNotChange = false;
 
 	}
+	//quit the program
 	else if (*number == "8")
 	{
 		confirmExit();
 	}
+	//any input besides these numbers doesn't work
 	else
 	{
 		std::cout << "Invalid choice. Sorry. Seriously sorry.\n";
 	}
 	std::cout << "\n";
 
-	return fileNotChange;
+	return fileNotChange;//this affect whether to return back to the main menu
 }
 
 //give user a chance to lock in their sub menu choice
