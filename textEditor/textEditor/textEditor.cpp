@@ -54,8 +54,9 @@ void menuDisplay()
 //user type numbers to apply their option
 std::string pickingOptions(std::string *number, std::string name)
 {
-	bool openingFile = true;//ends the loop if file is open
+	bool openingFile = true;
 
+	//ends the loop if file is done trying to open the file
 	while (openingFile)
 	{
 		getline(std::cin, *number);
