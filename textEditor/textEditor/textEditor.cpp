@@ -344,6 +344,7 @@ void overrideTextFile(std::vector<std::string> desiredText, std::string fileName
 	file.clear();//require to read the file again
 }
 
+//this overrides the file's name without interfacing with the content of the file
 void renameFile(std::string fileName, std::fstream &file, std::string *fileNamePointer)
 {
 	std::string fullFileName = fileName + ".txt";
