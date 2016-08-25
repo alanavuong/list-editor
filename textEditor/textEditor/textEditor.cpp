@@ -371,7 +371,7 @@ void renameFile(std::string fileName, std::fstream &file, std::string *fileNameP
 
 }
 
-//user can delete the text there using at the moment
+//user deletes the text file and its content
 void deleteFile(std::string fileName, std::fstream &file)
 {
 	std::string fullFileName = fileName + ".txt";
@@ -387,6 +387,7 @@ void deleteFile(std::string fileName, std::fstream &file)
 		puts("File successfully deleted");
 	}
 }
+
 //message to confirm user choice to exit program
 void displayQuittingText()
 {
