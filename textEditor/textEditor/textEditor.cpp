@@ -425,7 +425,7 @@ int main()
 	std::string *fileNamePointer = &fileName;
 
 	bool fileNotAccepted = true;//check whether file exist or if already exist
-	bool notChangingFile = true;//allows new file during the submenu selection
+	bool notChangingFile = true;//check whether to return back to the main menu or not
 	
 	while(notChangingFile)
 	{
