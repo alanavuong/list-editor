@@ -318,6 +318,7 @@ const std::vector<std::string> storeDesiredText(std::vector<std::string> desired
 	while (file.good())
 	{
 		getline(file, targetedText);
+		//this stores each line into the vector except any matches with the targetedText
 		if (excludeText != targetedText)
 		{
 			desiredText.push_back(targetedText + "\n");
