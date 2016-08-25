@@ -37,7 +37,7 @@ void overrideTextFile(std::vector<std::string> desiredText, std::string fileName
 void renameFile(std::string fileName, std::fstream& file, std::string *fileNamePointer);
 void deleteFile(std::string fileName, std::fstream &file);
 
-//exit option
+//exit options
 void displayQuittingText();
 void confirmExit();
 
