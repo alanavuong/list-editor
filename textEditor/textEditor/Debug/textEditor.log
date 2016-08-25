@@ -1,1 +1,6 @@
-﻿  textEditor.vcxproj -> C:\Users\Alan\Downloads\programming\visualStudio\c++\smallProjects\textEditor\Debug\textEditor.exe
+﻿  textEditor.cpp
+c:\users\alan\downloads\version-control\projects\filetextapplication\texteditor\texteditor\texteditor.cpp(321): warning C4018: '<': signed/unsigned mismatch
+  stdafx.cpp
+  Generating Code...
+  LINK : C:\Users\Alan\Downloads\version-control\projects\fileTextApplication\textEditor\Debug\textEditor.exe not found or not built by the last incremental link; performing full link
+  textEditor.vcxproj -> C:\Users\Alan\Downloads\version-control\projects\fileTextApplication\textEditor\Debug\textEditor.exe

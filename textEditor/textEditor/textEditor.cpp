@@ -1,6 +1,3 @@
-// textEditor.cpp : Defines the entry point for the console application.
-//
-
 #include "stdafx.h"
 #include <stdio.h>
 #include <iostream>//read
@@ -11,10 +8,11 @@
 /*
 	Alan Vuong
 	Text Editor Program
-	Write/read a text file
 	Created: December 20 2015
 	Updated: December 30 2015
 */
+
+//write or read to a text file that formated in a list format
 
 //upcoming features: saving option, make code more structure like putting at the end of the main function
 
