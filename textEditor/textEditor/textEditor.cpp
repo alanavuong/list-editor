@@ -334,6 +334,7 @@ void overrideTextFile(std::vector<std::string> desiredText, std::string fileName
 	std::ofstream outFile;
 
 	outFile.open(fileName + ".txt");
+	//adds to the file with the vector carrying the desired text
 	for (int j = 0; j < desiredText.size() - 1; ++j)//-1 prevents "\n" being added to vector
 	{
 		outFile << desiredText.at(j);
