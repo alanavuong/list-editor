@@ -85,7 +85,7 @@ std::string pickingOptions(std::string *number, std::string name)
 	return name;
 }
 
-//first option to make new file
+//first option of main menu
 bool makeNewFile(bool isOpen)
 {
 	std::cout << "Creating...\n";
@@ -94,7 +94,7 @@ bool makeNewFile(bool isOpen)
 	return isOpen;
 }
 
-//second option to get existing file
+//second option to main menu
 bool findExistingFile(bool isOpen)
 {
 	std::cout << "Reopening...\n";

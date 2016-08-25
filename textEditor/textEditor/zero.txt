@@ -3,3 +3,4 @@ kite
 bike
 flu
 blue
+zero degree
