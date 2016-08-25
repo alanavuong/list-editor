@@ -235,11 +235,11 @@ bool subMenu(std::string *number, std::fstream &file, std::string name, std::str
 	return fileNotChange;//this affect whether to return back to the main menu
 }
 
-//give user a chance to lock in their sub menu choice
+//give user a chance to confirm their sub menu choice
 bool userAcceptChoice()
 {
-	std::string numberChoice;//user confirming choice
-	bool denyChoice = true;//chooses to loop back for submenu choice
+	std::string numberChoice;//user input a string
+	bool denyChoice = true;//this method loops until the user accepts their sub menu option
 
 	std::cout << "Are you sure about choosing that option?\n" <<
 		"1.Yes\n" <<
