@@ -263,18 +263,20 @@ bool userAcceptChoice()
 	return denyChoice;
 }
 
-//allows user to read text file after adding text
+//allows user to read text file that list the text in a list
 void readFile(std::fstream& file)
 {
 	file.seekg(0);
 	std::cout << "Reading file\n" << "____________\n";
 	std::string line;
 
+	//files continues to list out each line until the end of the file
 	while (file.good())
 	{
 		getline(file, line);
 		std::cout << line << "\n";
 	}
+
 	file.clear();//require to read the file again
 }
 
