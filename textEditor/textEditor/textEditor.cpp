@@ -106,16 +106,18 @@ bool findExistingFile(bool isOpen)
 //checks logic for creating a new or opening an existing file
 bool isAcceptableName(std::string fileName, std::string *number)
 {
-	bool fileNotObtain = false;//a flag that ends while loop, when you success open/create a file
+	bool fileNotObtain = false;//a flag that ends while loop, when you successfully open or create a file
 
 	std::ifstream inFile;
 	inFile.open(fileName + ".txt");
 
+	//you can't create a new file name that already exit
 	if (!inFile.fail() && (*number == "1"))
 	{
 		std::cout << "The file existed already\n";
 		fileNotObtain = true;
 	}
+	//you can't open an existing file name that doesn't exist
 	else if (inFile.fail() && (*number == "2"))
 	{
 		std::cout << "The file doesn't exist\n";
