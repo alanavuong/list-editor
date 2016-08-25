@@ -280,19 +280,19 @@ void readFile(std::fstream& file)
 	file.clear();//require to read the file again
 }
 
-//add text at the end of the line
+//add text at the end of the line of that selected file
 void addText(std::fstream& file)
 {
 	std::string newText;//adds new text to the file
 
-	readFile(file);
+	readFile(file);//currently shows the orginal file
 
 	std::cout << "\nEnter text to the text file\n";
 	getline(std::cin, newText);
-	std::cout << "\n";
-	file << newText + "\n";
+	std::cout << "\n";//prevents this prevents the new text from mashing older text in the same line
+	file << newText + "\n";//adds new text to the file
 
-	readFile(file);
+	readFile(file);//the modified file with the new text
 }
 
 //removes text with user's string choice
