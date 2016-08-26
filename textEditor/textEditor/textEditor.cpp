@@ -1,6 +1,3 @@
-// textEditor.cpp : Defines the entry point for the console application.
-//
-
 #include "stdafx.h"
 #include <stdio.h>
 #include <iostream>//read
@@ -11,10 +8,11 @@
 /*
 	Alan Vuong
 	Text Editor Program
-	Write/read a text file
 	Created: December 20 2015
 	Updated: December 30 2015
 */
+
+//write or read to a text file that formated in a list format
 
 //upcoming features: saving option, make code more structure like putting at the end of the main function
 
@@ -39,7 +37,7 @@ void overrideTextFile(std::vector<std::string> desiredText, std::string fileName
 void renameFile(std::string fileName, std::fstream& file, std::string *fileNamePointer);
 void deleteFile(std::string fileName, std::fstream &file);
 
-//exit option
+//exit options
 void displayQuittingText();
 void confirmExit();
 
@@ -56,8 +54,9 @@ void menuDisplay()
 //user type numbers to apply their option
 std::string pickingOptions(std::string *number, std::string name)
 {
-	bool openingFile = true;//ends the loop if file is open
+	bool openingFile = true;
 
+	//ends the loop if file is done trying to open the file
 	while (openingFile)
 	{
 		getline(std::cin, *number);
@@ -86,7 +85,7 @@ std::string pickingOptions(std::string *number, std::string name)
 	return name;
 }
 
-//first option to make new file
+//first option of main menu
 bool makeNewFile(bool isOpen)
 {
 	std::cout << "Creating...\n";
@@ -95,7 +94,7 @@ bool makeNewFile(bool isOpen)
 	return isOpen;
 }
 
-//second option to get existing file
+//second option to main menu
 bool findExistingFile(bool isOpen)
 {
 	std::cout << "Reopening...\n";
@@ -107,16 +106,18 @@ bool findExistingFile(bool isOpen)
 //checks logic for creating a new or opening an existing file
 bool isAcceptableName(std::string fileName, std::string *number)
 {
-	bool fileNotObtain = false;//a flag that ends while loop, when you success open/create a file
+	bool fileNotObtain = false;//a flag that ends while loop, when you successfully open or create a file
 
 	std::ifstream inFile;
 	inFile.open(fileName + ".txt");
 
+	//you can't create a new file name that already exit
 	if (!inFile.fail() && (*number == "1"))
 	{
 		std::cout << "The file existed already\n";
 		fileNotObtain = true;
 	}
+	//you can't open an existing file name that doesn't exist
 	else if (inFile.fail() && (*number == "2"))
 	{
 		std::cout << "The file doesn't exist\n";
@@ -164,12 +165,13 @@ void subMenuDisplay()
 		"8.Exit\n";
 }
 
-//user can modify the file through the following options, change this return type
+//user can modify the file through the following options
 bool subMenu(std::string *number, std::fstream &file, std::string name, std::string *fileNamePointer)
 {
 	bool fileNotChange = true;//decide whether to transition to main menu
 	bool noChangeOnOption = true;//confirm user choice on sub menu
 
+	//this confirms whether the user want to choose that number for the sub menu
 	while (noChangeOnOption)
 	{
 		subMenuDisplay();
@@ -179,56 +181,65 @@ bool subMenu(std::string *number, std::fstream &file, std::string name, std::str
 		noChangeOnOption = userAcceptChoice();
 	}
 
+	//returns to the main menu
 	if (*number == "1")
 	{
 		fileNotChange = false;
 	}
+	//returns to the main menu
 	else if (*number == "2")
 	{
 		fileNotChange = false;
 	}
+	//displays the text file in a list format
 	else if (*number == "3")
 	{
 		readFile(file);
 	}
+	//adds a new text to the next line of the text file
 	else if (*number == "4")
 	{
 		addText(file);
 	}
+	//deletes a targeted text and updates that information
 	else if (*number == "5")
 	{
 		readFile(file);
 		removeText(file, name);
 		readFile(file);
 	}
+	//renames the file
 	else if (*number == "6")
 	{
 		renameFile(name, file, fileNamePointer);
 	}
+	//return to back to main menu after deleting the file
 	else if (*number == "7")
 	{
 		deleteFile(name, file);
 		fileNotChange = false;
 
 	}
+	//quit the program
 	else if (*number == "8")
 	{
 		confirmExit();
 	}
+	//any input besides these numbers doesn't work
 	else
 	{
 		std::cout << "Invalid choice. Sorry. Seriously sorry.\n";
 	}
 	std::cout << "\n";
 
-	return fileNotChange;
+	return fileNotChange;//this affect whether to return back to the main menu
 }
 
-//give user a chance to lock in their sub menu choice
+//give user a chance to confirm their sub menu choice
 bool userAcceptChoice()
 {
-	std::string numberChoice;//user confirming choice
-	bool denyChoice = true;//chooses to loop back for submenu choice
+	std::string numberChoice;//user input a string
+	bool denyChoice = true;//this method loops until the user accepts their sub menu option
 
 	std::cout << "Are you sure about choosing that option?\n" <<
 		"1.Yes\n" <<
@@ -252,34 +263,36 @@ bool userAcceptChoice()
 	return denyChoice;
 }
 
-//allows user to read text file after adding text
+//allows user to read text file that list the text in a list
 void readFile(std::fstream& file)
 {
 	file.seekg(0);
 	std::cout << "Reading file\n" << "____________\n";
 	std::string line;
 
+	//files continues to list out each line until the end of the file
 	while (file.good())
 	{
 		getline(file, line);
 		std::cout << line << "\n";
 	}
+
 	file.clear();//require to read the file again
 }
 
-//add text at the end of the line
+//add text at the end of the line of that selected file
 void addText(std::fstream& file)
 {
 	std::string newText;//adds new text to the file
 
-	readFile(file);
+	readFile(file);//currently shows the orginal file
 
 	std::cout << "\nEnter text to the text file\n";
 	getline(std::cin, newText);
-	std::cout << "\n";
-	file << newText + "\n";
+	std::cout << "\n";//prevents this prevents the new text from mashing older text in the same line
+	file << newText + "\n";//adds new text to the file
 
-	readFile(file);
+	readFile(file);//the modified file with the new text
 }
 
 //removes text with user's string choice
@@ -305,6 +318,7 @@ const std::vector<std::string> storeDesiredText(std::vector<std::string> desired
 	while (file.good())
 	{
 		getline(file, targetedText);
+		//this stores each line into the vector except any matches with the targetedText
 		if (excludeText != targetedText)
 		{
 			desiredText.push_back(targetedText + "\n");
@@ -320,6 +334,7 @@ void overrideTextFile(std::vector<std::string> desiredText, std::string fileName
 	std::ofstream outFile;
 
 	outFile.open(fileName + ".txt");
+	//adds to the file with the vector carrying the desired text
 	for (int j = 0; j < desiredText.size() - 1; ++j)//-1 prevents "\n" being added to vector
 	{
 		outFile << desiredText.at(j);
@@ -329,6 +344,7 @@ void overrideTextFile(std::vector<std::string> desiredText, std::string fileName
 	file.clear();//require to read the file again
 }
 
+//this overrides the file's name without interfacing with the content of the file
 void renameFile(std::string fileName, std::fstream &file, std::string *fileNamePointer)
 {
 	std::string fullFileName = fileName + ".txt";
@@ -355,7 +371,7 @@ void renameFile(std::string fileName, std::fstream &file, std::string *fileNameP
 
 }
 
-//user can delete the text there using at the moment
+//user deletes the text file and its content
 void deleteFile(std::string fileName, std::fstream &file)
 {
 	std::string fullFileName = fileName + ".txt";
@@ -371,6 +387,7 @@ void deleteFile(std::string fileName, std::fstream &file)
 		puts("File successfully deleted");
 	}
 }
+
 //message to confirm user choice to exit program
 void displayQuittingText()
 {
@@ -408,7 +425,7 @@ int main()
 	std::string *fileNamePointer = &fileName;
 
 	bool fileNotAccepted = true;//check whether file exist or if already exist
-	bool notChangingFile = true;//allows new file during the submenu selection
+	bool notChangingFile = true;//check whether to return back to the main menu or not
 	
 	while(notChangingFile)
 	{
